@@ -1,0 +1,31 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        chapter: [ch01, ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch11, ch13]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip pytest
+          if [ -f "${{ matrix.chapter }}/requirements.txt" ]; then
+            python -m pip install -r "${{ matrix.chapter }}/requirements.txt"
+          else
+            python -m pip install -r requirements.txt
+          fi
+      - name: Test
+        working-directory: ${{ matrix.chapter }}
+        run: |
+          if ls test_*.py *_test.py >/dev/null 2>&1; then python -m pytest -q; else echo "no tests"; fi

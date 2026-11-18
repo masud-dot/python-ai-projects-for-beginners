@@ -1,0 +1,2 @@
+# Chapter 2 uses only the Python standard library.
+# pytest is needed only to run test_ch02.py.

@@ -1,0 +1,6 @@
+{
+  "name": "Python AI Projects for Beginners: 10 End-to-End Projects from Classic ML to Modern Generative AI",
+  "image": "mcr.microsoft.com/devcontainers/python:3.14",
+  "postCreateCommand": "python -m pip install -r requirements.txt",
+  "customizations": {"vscode": {"extensions": ["ms-python.python"]}}
+}

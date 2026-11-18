@@ -1,0 +1,4 @@
+data/
+results/model.npz
+__pycache__/
+.pytest_cache/
